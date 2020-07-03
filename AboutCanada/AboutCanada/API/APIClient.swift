@@ -23,9 +23,28 @@ final class APIClient {
             completion(.failure(NetworkError.noNetwork))
             return
         }
-        transport.fetch(request: request) { data in
+        transport.fetch(request: request) { result in
+            print(try? result.get().prettyPrittedString)
             completion(Result { try JSONDecoder().decode(Model.self,
-                                                         from: data.get()) })
+                                                         from: result.get()) })
+            return
+        }
+    }
+}
+
+public extension Data {
+    func decoded<T: Decodable>(using decoder: JSONDecoder = JSONDecoder()) throws -> T {
+        try decoder.decode(T.self, from: self)
+    }
+    var prettyPrittedString: String {
+        if let object = try? JSONSerialization.jsonObject(with: self,
+                                                          options: .mutableLeaves),
+            JSONSerialization.isValidJSONObject(object),
+            let data = try? JSONSerialization.data(withJSONObject: object,
+                                                   options: .prettyPrinted) {
+            return String(decoding: data, as: UTF8.self)
+        } else {
+            return String(decoding: self, as: UTF8.self)
         }
     }
 }

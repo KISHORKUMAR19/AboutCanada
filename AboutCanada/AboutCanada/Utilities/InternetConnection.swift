@@ -10,7 +10,7 @@ import Foundation
 import Reachability
 
 public class InternetConnection {
-    public var isConnected = false
+    public var isConnected = true
     public static let shared = InternetConnection()
     private var reachability: Reachability!
     public static let failedShared = InternetConnection("invalidHost")

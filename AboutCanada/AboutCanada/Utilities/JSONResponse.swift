@@ -10,7 +10,7 @@ import Foundation
 
 struct JSONResponse<T: Codable>: Codable {
     var title: String
-    var specifications: [T]
+    var specifications: T
     
     enum CodingKeys: String, CodingKey {
         case title = "title"
