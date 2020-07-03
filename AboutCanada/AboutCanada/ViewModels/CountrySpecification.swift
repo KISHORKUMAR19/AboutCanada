@@ -9,4 +9,17 @@
 import Foundation
 
 class CountrySpecification {
+    
+    //MARK: - Properties
+    
+    private var specifications = [Specification]()
+    
+    //MARK: - Init
+    
+    init(_ specifications: [Specification] = []) {
+        self.specifications = specifications
+    }
+    
+    //MARK: - Intent(s)
+    
 }
