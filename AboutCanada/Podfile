@@ -7,7 +7,8 @@ target 'AboutCanada' do
 
   # Pods for AboutCanada
   pod 'SDWebImage'
-
+  pod 'SwiftLint'
+  
   target 'AboutCanadaTests' do
     inherit! :search_paths
     # Pods for testing
